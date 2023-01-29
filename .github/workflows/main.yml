@@ -26,8 +26,8 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     - name: building image
-      run: docker build -t terraform .
+      run: docker build -t tf .
     - name: taging image
-      run: docker tag terraform:latest 989813064368.dkr.ecr.us-west-2.amazonaws.com/terraform:latest
+      run: docker tag tf:latest public.ecr.aws/o7x1t6h0/tf:latest
     - name: pushing image
-      run: docker push 989813064368.dkr.ecr.us-west-2.amazonaws.com/terraform:latest
+      run: docker push public.ecr.aws/o7x1t6h0/tf:latest
