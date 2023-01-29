@@ -1,4 +1,4 @@
 FROM python:3
-RUN mkdir sai
-ADD 340.py /sai
-CMD ["python", "./340.py"]
+RUN pip install python3
+ADD 340.py 
+CMD ["python3", "./340.py"]
