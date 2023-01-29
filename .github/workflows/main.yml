@@ -22,33 +22,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-west-1
 
-#     - name: Login to Amazon ECR
-#       id: login-ecr
-#       uses: aws-actions/amazon-ecr-login@v1
-#     - name: building image
-#       run: docker build -t test .
-#     - name: taging image
-#       run: docker tag test:latest 989813064368.dkr.ecr.us-west-1.amazonaws.com/test:latest
-#     - name: pushing image
-#       run: docker push 989813064368.dkr.ecr.us-west-1.amazonaws.com/test:latest
-    - name: terraform directory
-      run : mkdir terraform
-    - name: ading file
-      run : cp main.tf terraform
-    - uses: actions/checkout@v3
-    - name: creating directory
-      run: mkdir nice
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
     - name: building image
-      run: sudo apt-get install unzip
-    - name: version
-      run : wget https://releases.hashicorp.com/terraform/1.0.7/terraform_1.0.7_linux_amd64.zip
-    - name: unzip
-      run: unzip terraform_1.0.7_linux_amd64.zip
-    - name: moving
-      run: sudo mv terraform /nice
-    - name: version 1
-      run: terraform --version
-    - name: intializing terraform
-      run: terraform init
-    - name: terraform building
-      run: terraform apply -auto-approve
+      run: docker build -t terraform .
+    - name: taging image
+      run: docker tag terraform:latest 989813064368.dkr.ecr.us-west-2.amazonaws.com/terraform:latest
+    - name: pushing image
+      run: docker push 989813064368.dkr.ecr.us-west-2.amazonaws.com/terraform:latest
